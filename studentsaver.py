@@ -16,7 +16,7 @@ def create(file, list):
     nameM = input()
     print("please enter your gpa!!!!!!!!!!!")
     gpa = input()
-    file.write("," + studentID + "," + nameM + "," + gpa)
+    file.write("\n" + studentID + "\n" + nameM + "\n" + gpa)
     print(list)
     list.extend([studentID, nameM, gpa])
     print(list)
@@ -24,7 +24,7 @@ def create(file, list):
 if __name__ == "__main__":
     cwd = os.getcwd()
     with open(cwd + "\data.txt", "r+") as f:
-        innards = f.read().split(",")
+        innards = f.read().split("\n")
         print(innards)
         print("Hi welcome to student saver my name is tudetn saver and i will be saving students today, would you like to 1. Create 2. Read 3. Update 4. Delete 5. Fortnite ???????")
         epicReply = input()
