@@ -4,9 +4,10 @@ import os
 def search(id , list):
     for x , item in enumerate(list):
         if item == id:
-            print(item)
-            print(list[x + 1])
-            print(list[x + 2])
+            return(x)
+            # print(item)
+            # print(list[x + 1])
+            # print(list[x + 2])
     
 def create(file, list):
     print("please enter your STUDENT ID!!!!!")
@@ -41,7 +42,10 @@ if __name__ == "__main__":
             pass
         elif epicReply == "2":
             tempID = input("thats stupid, put your id in: ")
-            search(tempID, innards)
+            val = search(tempID, innards)
+            print(innards[val])
+            print(innards[val + 1])
+            print(innards[val + 2])
         elif epicReply == "1":
             create(f, innards)
         else:
