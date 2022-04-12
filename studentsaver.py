@@ -1,6 +1,16 @@
 import time
 import os
 
+
+class student():
+    def __init__(self, startNum):
+        self.startingIndex = startNum
+
+    def update(self, list, name, gpa):
+        list[self.startingIndex + 1] = name
+        list[self.startingIndex + 2] = gpa
+        return(list)
+
 def search(id , list):
     for x , item in enumerate(list):
         if item == id:
@@ -8,34 +18,38 @@ def search(id , list):
             # print(item)
             # print(list[x + 1])
             # print(list[x + 2])
+
+def writeLines(file, list):
+    writeString = ""
+    for i in range(0, len(list) - 1):
+        writeString += list[i] + "\n"
+    writeString += list[len(list) - 1]
+    file.seek(0)
+    file.write(writeString)
+    file.truncate()
     
 def create(file, list):
     print("please enter your STUDENT ID!!!!!")
     studentID = input()
-    print("please enteer you're name!!!!!!")
+    print("please enter you're name!!!!!!")
     nameM = input()
     print("please enter your gpa!!!!!!!!!!!")
     gpa = input()
-    file.write("\n" + studentID + "\n" + nameM + "\n" + gpa)
-    print(list)
     list.extend([studentID, nameM, gpa])
-    print(list)
+    writeLines(file, list)
 
 if __name__ == "__main__":
     cwd = os.getcwd()
     with open(cwd + "\data.txt", "r+") as f:
         innards = f.read().split("\n")
         print(innards)
-        print("Hi welcome to student saver my name is tudetn saver and i will be saving students today, would you like to 1. Create 2. Read 3. Update 4. Delete 5. Fortnite ???????")
+        print("Hi welcome to student saver my name is tudetn saver and i will be saving students today, would you like to: \n1. Create\n2. Read\n3. Update\n4. Delete\n5. Fortnite ???????")
         epicReply = input()
         if epicReply == "5":
-            for x in range(1000):
+            for x in range(10):
                 print("fortnite")
-            time.sleep(10)
-            x = {}
-            for i in range(1000000):
-                x = {1: x}
-            repr(x)
+            print("quit")
+            exit()
         elif epicReply == "4":
             pass
         elif epicReply == "3":
