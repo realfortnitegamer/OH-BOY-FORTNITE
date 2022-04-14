@@ -18,6 +18,7 @@ def search(id , list):
             # print(item)
             # print(list[x + 1])
             # print(list[x + 2])
+    return False
 
 def writeLines(file, list):
     writeString = ""
@@ -53,7 +54,15 @@ if __name__ == "__main__":
         elif epicReply == "4":
             pass
         elif epicReply == "3":
-            pass
+            updateID = search(input("ID?: "), innards)
+            if updateID is False:
+                print("ID NOT FOUND")
+            else:
+                yuh = student(updateID)
+                name = input("new name: ")
+                gpa = input("new gpa: ")
+                innards = yuh.update(innards, name, gpa)
+                writeLines(f, innards)
         elif epicReply == "2":
             tempID = input("thats stupid, put your id in: ")
             val = search(tempID, innards)
