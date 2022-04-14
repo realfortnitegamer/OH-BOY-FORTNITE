@@ -46,43 +46,47 @@ def create(file, list):
 
 
 if __name__ == "__main__":
-    cwd = os.getcwd()
-    with open(cwd + "\data.txt", "r+") as f:
-        innards = f.read().split("\n")
-        print(innards)
-        print("Hi welcome to student saver my name is tudetn saver and i will be saving students today, would you like to: \n1. Create\n2. Read\n3. Update\n4. Delete\n5. Fortnite ???????")
-        epicReply = input()
-        if epicReply == "5":
-            for x in range(10):
-                print("fortnite")
-            print("quit")
-            exit()
-        elif epicReply == "4":
-            deleteID = search(input("ID?: "), innards)
-            if deleteID is False:
-                print("ID NOT FOUND")
+    while True:
+        cwd = os.getcwd()
+        with open(cwd + "\data.txt", "r+") as f:
+            innards = f.read().split("\n")
+            # print(innards)
+            print("Hi welcome to student saver my name is tudetn saver and i will be saving students today, would you like to: \n1. Create\n2. Read\n3. Update\n4. Delete\n5. Fortnite ???????")
+            epicReply = input()
+            if epicReply == "5":
+                for x in range(10):
+                    print("fortnite")
+                print("quit")
+                exit()
+            elif epicReply == "4":
+                deleteID = search(input("ID?: "), innards)
+                if deleteID is False:
+                    print("ID NOT FOUND")
+                else:
+                    yuh = student(deleteID)
+                    innards = yuh.delete(innards)
+                    writeLines(f, innards)
+            elif epicReply == "3":
+                updateID = search(input("ID?: "), innards)
+                if updateID is False:
+                    print("ID NOT FOUND")
+                else:
+                    yuh = student(updateID)
+                    name = input("new name: ")
+                    gpa = input("new gpa: ")
+                    innards = yuh.update(innards, name, gpa)
+                    writeLines(f, innards)
+            elif epicReply == "2":
+                tempID = input("thats stupid, put your id in: ")
+                val = search(tempID, innards)
+                if val is False:
+                    print("ID NOT FOUND")
+                else:
+                    print(innards[val])
+                    print(innards[val + 1])
+                    print(innards[val + 2])
+            elif epicReply == "1":
+                create(f, innards)
             else:
-                yuh = student(deleteID)
-                innards = yuh.delete(innards)
-                writeLines(f, innards)
-        elif epicReply == "3":
-            updateID = search(input("ID?: "), innards)
-            if updateID is False:
-                print("ID NOT FOUND")
-            else:
-                yuh = student(updateID)
-                name = input("new name: ")
-                gpa = input("new gpa: ")
-                innards = yuh.update(innards, name, gpa)
-                writeLines(f, innards)
-        elif epicReply == "2":
-            tempID = input("thats stupid, put your id in: ")
-            val = search(tempID, innards)
-            print(innards[val])
-            print(innards[val + 1])
-            print(innards[val + 2])
-        elif epicReply == "1":
-            create(f, innards)
-        else:
-            print("you suck at typing a number +dumb + ratio + u fell offf (or u type wrong number!!!!!)!!!!!")
+                print("you suck at typing a number +dumb + ratio + u fell offf (or u type wrong number!!!!!)!!!!!")
             
