@@ -11,6 +11,11 @@ class student():
         list[self.startingIndex + 2] = gpa
         return(list)
 
+    def delete(self, list):
+        for x in range(3):
+            list.pop(self.startingIndex)
+        return(list)
+
 def search(id , list):
     for x , item in enumerate(list):
         if item == id:
@@ -39,6 +44,7 @@ def create(file, list):
     list.extend([studentID, nameM, gpa])
     writeLines(file, list)
 
+
 if __name__ == "__main__":
     cwd = os.getcwd()
     with open(cwd + "\data.txt", "r+") as f:
@@ -52,7 +58,13 @@ if __name__ == "__main__":
             print("quit")
             exit()
         elif epicReply == "4":
-            pass
+            deleteID = search(input("ID?: "), innards)
+            if deleteID is False:
+                print("ID NOT FOUND")
+            else:
+                yuh = student(deleteID)
+                innards = yuh.delete(innards)
+                writeLines(f, innards)
         elif epicReply == "3":
             updateID = search(input("ID?: "), innards)
             if updateID is False:
